@@ -29,7 +29,10 @@ export default {
     actions: {
         INFER: async ({commit, state}) => {
             let wisdom_url = process.env.VUE_APP_WISDOM_API
-            let body = {"sent": state.sent}
+            let body = {
+                "sent": state.sent,
+                "size": 10
+            }
             await axios.get(wisdom_url, {params: body})
                 .then(function (response) {
                     const inferResult = response.data
@@ -48,6 +51,7 @@ export default {
                     })
             }
             commit('SET_EGS', egs_dict)
+            console.log(state)
         },
 
     },

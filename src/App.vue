@@ -24,6 +24,10 @@
         :egs="['가는 날이 장날이라더니 블람ㄴ이ㅏㅓㅑㅣㅁ넝ㅎ', '오늘 도서관에 가려고 ㅁㄴ이ㅏ버ㅣㅏㄹ 가는 날이 장날이네.']"
     />
 
+    <b-breadcrumb
+        :items="footer"
+        style="margin-top: 5%"
+    />
   </div>
 </template>
 
@@ -42,6 +46,7 @@ export default {
       wikiObj: null,
       isResult: false,
       searchQuery: '',
+      footer: ["designed & developed by Jongyoon Kim"]
     }
   },
   computed: {
