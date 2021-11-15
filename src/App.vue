@@ -5,7 +5,9 @@
     </b-jumbotron>
 
     <search-bar />
-
+<!--    <div v-for="data">-->
+<!--      -->
+<!--    </div>-->
     <wisdom-card
         wisdom="가는 날이 장날"
         def="해야할 일이 있을 때 하필 일어남"

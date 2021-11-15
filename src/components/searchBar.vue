@@ -5,10 +5,10 @@
 
       </b-input-group-prepend>
       <b-form-input
-          v-model="text"
+          v-model="sentence"
           placeholder="지금 생각나지 않는 속담? 상황을 입력해보세요!" />
       <b-input-group-append>
-        <b-button variant="outline-success">
+        <b-button variant="outline-success" @click="onSubmit">
           <b-icon icon="search"></b-icon>
         </b-button>
       </b-input-group-append>
@@ -22,8 +22,15 @@ export default {
   name: 'SearchBar',
   data() {
     return {
-      text: ''
+      sentence: ''
     }
+  },
+  methods: {
+    onSubmit() {
+      console.log(this.sentence)
+      this.$store.commit('wisdomStory/SET_SENT', this.sentence)
+      this.$store.dispatch('wisdomStory/INFER')
+    },
   }
 }
 </script>
