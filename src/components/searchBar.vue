@@ -5,6 +5,7 @@
 
       </b-input-group-prepend>
       <b-form-input
+          @keydown.enter="onSubmit"
           v-model="sentence"
           placeholder="지금 생각나지 않는 속담? 상황을 입력해보세요!" />
       <b-input-group-append>
@@ -27,9 +28,15 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.sentence)
       this.$store.commit('wisdomStory/SET_SENT', this.sentence)
       this.$store.dispatch('wisdomStory/INFER')
+    },
+  },
+  watch: {
+    sentence (val) {
+      if (val === '' || val === null) {
+        this.$store.commit('wisdomStory/CLEAR_SEARCH')
+      }
     },
   }
 }

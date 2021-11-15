@@ -5,28 +5,20 @@
     </b-jumbotron>
 
     <search-bar />
-<!--    <div v-for="data">-->
-<!--      -->
-<!--    </div>-->
-    <wisdom-card
-        wisdom="가는 날이 장날"
-        def="해야할 일이 있을 때 하필 일어남"
-        :egs="['가는 날이 장날이라더니 블람ㄴ이ㅏㅓㅑㅣㅁ넝ㅎ', '오늘 도서관에 가려고 ㅁㄴ이ㅏ버ㅣㅏㄹ 가는 날이 장날이네.']"
-    />
-    <wisdom-card
-        wisdom="가는 날이 장날"
-        def="해야할 일이 있을 때 하필 일어남"
-        :egs="['가는 날이 장날이라더니 블람ㄴ이ㅏㅓㅑㅣㅁ넝ㅎ', '오늘 도서관에 가려고 ㅁㄴ이ㅏ버ㅣㅏㄹ 가는 날이 장날이네.']"
-    />
-    <wisdom-card
-        wisdom="가는 날이 장날"
-        def="해야할 일이 있을 때 하필 일어남"
-        :egs="['가는 날이 장날이라더니 블람ㄴ이ㅏㅓㅑㅣㅁ넝ㅎ', '오늘 도서관에 가려고 ㅁㄴ이ㅏ버ㅣㅏㄹ 가는 날이 장날이네.']"
-    />
 
+    <div id="content">
+      <div v-for="(wisdom, idx) in wisdoms" v-bind:key="idx">
+        <wisdom-card
+            :wisdom="wisdom"
+            def="해야할 일이 있을 때 하필 일어남"
+            :score=scores[idx]
+            :egs="egs[wisdom]"
+        />
+      </div>
+    </div>
     <b-breadcrumb
         :items="footer"
-        style="margin-top: 5%"
+        style="position: absolute; bottom: 0;"
     />
   </div>
 </template>
@@ -43,32 +35,17 @@ export default {
   },
   data() {
     return {
-      wikiObj: null,
-      isResult: false,
-      searchQuery: '',
+
       footer: ["designed & developed by Jongyoon Kim"]
     }
   },
   computed: {
-
-  },
-  ready: function() {
+    wisdoms() {return this.$store.state.wisdomStory.wisdoms},
+    scores() {return this.$store.state.wisdomStory.scores},
+    egs() {return this.$store.state.wisdomStory.egs},
   },
   methods: {
-    removeSearchQuery: function() {
-      this.searchQuery = '';
-      this.isResult = false;
-    },
-    submitSearch: function() {
-      var reqURL = "https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrnamespace=0&exsentences=1&exintro&explaintext&exlimit=max&prop=extracts&gsrlimit=10&gsrsearch="+this.searchQuery+"&format=json";
 
-      this.$http.jsonp(reqURL).then(function(response) {
-        this.wikiObj = response.data.query.pages;
-        this.isResult = true;
-      }, function(response) { /* fail response msg */
-        console.log(response);
-      });
-    }
   }
 }
 </script>
@@ -83,5 +60,11 @@ export default {
   margin-top: 60px;
   margin-left: 3%;
   margin-right: 3%;
+  position: relative;
+  min-height: 90vh;
+}
+
+#content {
+  padding-bottom: 3.5rem
 }
 </style>
