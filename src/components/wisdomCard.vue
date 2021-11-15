@@ -12,7 +12,7 @@
 
         <b-card>
           <b-card-title>
-            {{ wisdom }} ({{ Math.round(score*100) }}%)
+            {{ wisdom }} ({{ score }}%)
           </b-card-title>
           <b-card-sub-title style="margin-top: 1.5%; margin-bottom: 1.5%">
             {{ def }}

@@ -41,8 +41,9 @@ export default {
             await axios.get(wisdom_url, {params: body})
                 .then(function (response) {
                     const inferResult = response.data
-                    commit('SET_WISDOMS', inferResult[0])
-                    commit('SET_SCORES', inferResult[1])
+                    const scores = inferResult[1].map(v => Math.round(v*100)).filter(v => v !== 0)
+                    commit('SET_WISDOMS', inferResult[0].slice(0, scores.length))
+                    commit('SET_SCORES', scores)
                 })
 
             let story_url = process.env.VUE_APP_STORY_API
@@ -56,8 +57,9 @@ export default {
                     })
             }
             commit('SET_EGS', egs_dict)
-            console.log(state)
             commit('SET_LOADING', false)
+            console.log(state.wisdoms)
+            console.log(state.scores)
         },
 
     },

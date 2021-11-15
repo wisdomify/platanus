@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.sentence)
       this.$store.commit('wisdomStory/SET_SENT', this.sentence)
       this.$store.dispatch('wisdomStory/INFER')
     },
