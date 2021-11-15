@@ -3,6 +3,7 @@ import axios from 'axios'
 export default {
     namespaced: true,
     state: {
+        loading: null,
         sent: '',
         wisdoms: [],
         scores: [],
@@ -16,11 +17,13 @@ export default {
     },
     mutations: {
         CLEAR_SEARCH: (state) => {
+            state.loading = null
             state.sent = ''
-            state.wisdoms = {}
+            state.wisdoms = []
+            state.scores = []
             state.egs = {}
         },
-
+        SET_LOADING: (state, V) => {state.loading = V},
         SET_SENT: (state, V) => {state.sent = V},
         SET_WISDOMS: (state, V) => {state.wisdoms = V},
         SET_SCORES: (state, V) => {state.scores = V},
@@ -28,6 +31,8 @@ export default {
     },
     actions: {
         INFER: async ({commit, state}) => {
+            commit('SET_LOADING', true)
+
             let wisdom_url = process.env.VUE_APP_WISDOM_API
             let body = {
                 "sent": state.sent,
@@ -52,6 +57,7 @@ export default {
             }
             commit('SET_EGS', egs_dict)
             console.log(state)
+            commit('SET_LOADING', false)
         },
 
     },
