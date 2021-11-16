@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-jumbotron header="Platanus" lead="상황에 맞는 속담, 의미, 사용법을 알아가세요.">
+    <b-jumbotron header="🌳Platanus" lead="상황에 맞는 속담, 의미, 사용법을 알아가세요.">
       <p>powered by Wisdomify</p>
     </b-jumbotron>
 
