@@ -36,6 +36,10 @@ export default {
     sentence (val) {
       if (val === '' || val === null) {
         this.$store.commit('wisdomStory/CLEAR_SEARCH')
+      } else {
+        if (val !== this.$store.state.wisdomStory.sent) {
+          this.$store.commit('wisdomStory/CLEAR_SEARCH')
+        }
       }
     },
   }
