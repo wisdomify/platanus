@@ -10,7 +10,7 @@
       <div v-for="(wisdom, idx) in wisdoms" v-bind:key="idx">
         <wisdom-card
             :wisdom="wisdom"
-            def="해야할 일이 있을 때 하필 일어남"
+            :def="defs[wisdom]"
             :score=scores[idx]
             :egs="egs[wisdom]"
         />
@@ -42,6 +42,7 @@ export default {
   computed: {
     wisdoms() {return this.$store.state.wisdomStory.wisdoms},
     scores() {return this.$store.state.wisdomStory.scores},
+    defs() {return this.$store.state.wisdomStory.defs},
     egs() {return this.$store.state.wisdomStory.egs},
   },
   methods: {
