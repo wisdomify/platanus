@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import App from "@/App";
 
 Vue.use(VueRouter)
 
@@ -13,7 +14,7 @@ Vue.use(VueRouter)
 // "component"는 `Vue.extend()`를 통해 만들어진
 // 실제 컴포넌트 생성자이거나 컴포넌트 옵션 객체입니다.
 const routes = [
-    { path: '/', redirect: '/'},
+    { path: '/', component: App},
 
 ]
 
